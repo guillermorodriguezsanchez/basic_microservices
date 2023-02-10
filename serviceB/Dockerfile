@@ -1,8 +1,8 @@
     FROM node:19.0.0
     
-    RUN mkdir -p /usr/src/app
+    RUN mkdir -p /usr/src/serviceB
     
-    WORKDIR /usr/src/app
+    WORKDIR /usr/src/serviceB
 
     COPY  package*.json ./
     

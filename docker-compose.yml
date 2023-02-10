@@ -1,69 +1,34 @@
 version: "3.8"
 services:
 
-  consul:
-    image: consul:latest
-    ports:
-      - "8400:8400"
-      - "8500:8500"
-      - "8600:8600"
-      - "8600:8600/udp"
-    command: "agent -server -bootstrap-expect=1 -ui -client 0.0.0.0"
-
-  csdevent:
-    container_name: eventService
+  servicea:
+    container_name: servicea
     restart: always
-    build: src\eventsService
+    build: servicea
     ports: 
       - "5000:3000"
-    links:
-      - emongo
-      - rabbitmq
-      - consul
-    volumes:
-      - .:/usr/src/eventsService
-  csdticket:
-    container_name: ticketService
-    restart: always
-    build: src\ticketsService
-    ports:
-      - "5001:3000"
-    links:
-      - tmongo
-      - rabbitmq
-      - consul
-    volumes:
-      - .:/usr/src/ticketsService
-  emongo:
-    container_name: emymongodatabase
-    image: mongo
-    volumes: 
-      - /data/emymongodatabase       
-    ports:
-      - "27017:27017"
-  tmongo:
-    container_name: tmymongodatabase
-    image: mongo
-    volumes: 
-      - /data/tmymongodatabase       
-    ports:
-      - "27018:27017"
-  rabbitmq:
-    container_name: rabbitmq
-    image: rabbitmq:3-management
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-  caddy:
-    image: caddy:2.4.3-alpine
-    volumes:
-      - ./caddy/Caddyfile:/home/caddy/Caddyfile
-    command: "caddy run --config /home/caddy/Caddyfile"
 
-    ports:
-      - "80:80"
-      - "443:443"
-    depends_on:
-      - csdevent
-      - csdticket
+    volumes:
+      - .:/usr/src/servicea
+
+  serviceb:
+    container_name: serviceb
+    restart: always
+    build: serviceb
+    ports: 
+      - "5001:3000"
+    volumes:
+      - .:/usr/src/serviceb
+
+
+  servicec:
+    container_name: servicec
+    restart: always
+    build: servicec
+    ports: 
+      - "5002:3000"
+    volumes:
+      - .:/usr/src/servicec
+
+  
   

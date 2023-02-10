@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+require('dotenv').config();
 
 app.get('/getTime', (req, res) => {
   res.json({
@@ -7,8 +8,8 @@ app.get('/getTime', (req, res) => {
   });
 });
 
-app.listen(3001, () => {
-  console.log('Servicio C escuchando en el puerto 3001');
+app.listen(process.env.PORT, () => {
+  console.log('Service C listening in port ', process.env.PORT);
 });
 
 module.exports = app;

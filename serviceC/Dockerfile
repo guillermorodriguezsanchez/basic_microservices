@@ -1,8 +1,8 @@
     FROM node:19.0.0
     
-    RUN mkdir -p /usr/src/app
+    RUN mkdir -p /usr/src/serviceC
     
-    WORKDIR /usr/src/app
+    WORKDIR /usr/src/serviceC
 
     COPY  package*.json ./
     
@@ -13,4 +13,3 @@
     EXPOSE 3000
 
     CMD ["npm", "run","start"]
-
