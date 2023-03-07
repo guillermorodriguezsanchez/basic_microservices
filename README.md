@@ -5,7 +5,7 @@ This project consists of three microservices created using Docker and Node.js. T
 ### The three services are:
 
 - Service A: Acts as the entry point for the application and is responsible for calling services B and C to obtain the current time.
-- Service B: Returns the current time in UTC format.
+- Service B: Returns an error.
 - Service C: Returns the current time in local time zone format.
 
 ## Technologies Used
